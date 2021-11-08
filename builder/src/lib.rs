@@ -3,8 +3,6 @@ extern crate proc_macro;
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{self, spanned::Spanned};
-use tracing::field::DebugValue;
-
 
 #[proc_macro_derive(Builder, attributes(builder))]
 pub fn derive(input: TokenStream) -> TokenStream {
@@ -17,7 +15,6 @@ pub fn derive(input: TokenStream) -> TokenStream {
 
 fn do_expand(st: &syn::DeriveInput) -> syn::Result<proc_macro2::TokenStream> {
     eprintln!("{:#?}", st.data);
-    Value
     let struct_name_literal = st.ident.to_string();
     let builder_name_literal = format!("{}Builder", struct_name_literal);
     let builder_name_ident = syn::Ident::new(&builder_name_literal, st.span());
